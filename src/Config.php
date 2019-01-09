@@ -60,6 +60,25 @@ final class Config
     const WX_TRANSFER = 'wx_transfer';// 转账
 
 
+    //========================= Qpay相关接口 =======================//
+
+    // 公众号网页支付
+    const QPAY_CHANNEL_WAP = 'qpay_wap';
+
+    // app 支付
+    const QPAY_CHANNEL_APP = 'qpay_app';
+
+    // 扫码支付
+    const QPAY_CHANNEL_QR = 'qpay_qr';
+
+    const QPAY_CHARGE = 'qpay_charge';
+
+    const QPAY_REFUND = 'qpay_refund';
+
+    const QPAY_RED = 'qpay_red';
+
+    const QPAY_TRANSFER = 'qpay_transfer';
+
 
     //========================= 招商相关接口 =======================//
     // 支付常量
@@ -106,4 +125,6 @@ final class Config
     const ALI_PAY = 'ali';
     const CMB_PAY = 'cmb';
     const CCB_PAY = 'ccb';
+    const QPAY_PAY = 'qpay';
+
 }
