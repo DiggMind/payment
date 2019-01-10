@@ -58,6 +58,8 @@ abstract class BaseData
             $this->channel = Config::CMB_PAY;
         } elseif ($config instanceof CcbConfig) {
             $this->channel = Config::CCB_PAY;
+        } elseif ($config instanceof QpayConfig) {
+            $this->channel = Config::QPAY_PAY;
         }
         $this->data = array_merge($config->toArray(), $reqData);
 

@@ -7,6 +7,7 @@ use Payment\Charge\Ali\AliWapCharge;
 use Payment\Charge\Ali\AliWebCharge;
 use Payment\Charge\Ali\AliQrCharge;
 use Payment\Charge\Cmb\CmbCharge;
+use Payment\Charge\Qpay\QpayCharge;
 use Payment\Charge\Wx\WxAppCharge;
 use Payment\Charge\Wx\WxBarCharge;
 use Payment\Charge\Wx\WxPubCharge;
@@ -90,8 +91,14 @@ class ChargeContext
                 case Config::CCB_CHANNEL_WEB:
                     $this->channel = new CcbWebCharge($config);
                     break;
+                // qpay
+                case Config::QPAY_CHANNEL_WAP:
+                case Config::QPAY_CHANNEL_APP:
+                case Config::QPAY_CHANNEL_QR:
+                    $this->channel = new QpayCharge($config);
+                    break;
                 default:
-                    throw new PayException('当前仅支持：支付宝  微信 招商一网通 建设银行');
+                    throw new PayException('当前仅支持：支付宝  微信 招商一网通 建设银行 QPAY');
             }
         } catch (PayException $e) {
             throw $e;

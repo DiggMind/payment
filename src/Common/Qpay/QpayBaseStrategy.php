@@ -5,28 +5,77 @@ namespace Payment\Common\Qpay;
 use GuzzleHttp\Client;
 use Payment\Common\BaseData;
 use Payment\Common\BaseStrategy;
+use Payment\Common\ConfigInterface;
 use Payment\Common\PayException;
-use Payment\Common\WxConfig;
-use Payment\Utils\ArrayUtil;
-use Payment\Utils\DataParser;
+use Payment\Common\QpayConfig;
 
 /**
  * @author: benny
  * @createTime: 2019-01-08 18:45
- * @description: qpay 支付接口
+ * @description: qpay 基本策略
+ *
+ * @property ConfigInterface $config QPAY支付配置
+ * @property BaseData $reqData 请求数据
  */
-abstract class QpayBaseStrategy implements BaseStrategy {
+abstract class QpayBaseStrategy implements BaseStrategy
+{
 
-    /**
-     * Qpay的配置文件
-     * @var CmbConfig $config
-     */
     protected $config;
 
-    /**
-     * 请求数据
-     * @var BaseData $reqData
-     */
     protected $reqData;
+
+    /**
+     * QpayBaseStrategy constructor.
+     * @param array $config
+     * @throws PayException
+     */
+    public function __construct(array $config)
+    {
+        try {
+            $this->config = new QpayConfig($config);
+        } catch (PayException $e) {
+            throw $e;
+        }
+    }
+
+    /**
+     * @param array $data
+     * @return mixed
+     * @throws PayException
+     */
+    public function handle(array $data)
+    {
+        $buildClass = $this->getBuildDataClass();
+
+        try {
+            $this->reqData = new $buildClass($this->config, $data);
+        } catch (PayException $e) {
+            throw $e;
+        }
+
+        $this->reqData->setSign();
+
+        $data = $this->reqData->getData();
+
+        return $this->retData($data);
+    }
+
+    /**
+     * 处理微信的返回值并返回给客户端
+     * @param array $ret
+     * @return mixed
+     * @author helei
+     */
+    protected function retData(array $ret)
+    {
+        $json = json_encode($ret, JSON_UNESCAPED_UNICODE);
+
+        $reqData = [
+//            'url' => $this->config->getewayUrl,
+//            'name' => CmbConfig::REQ_FILED_NAME,
+//            'value' => $json,
+        ];
+        return $reqData;
+    }
 
 }

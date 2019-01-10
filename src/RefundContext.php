@@ -5,6 +5,7 @@ use Payment\Common\BaseStrategy;
 use Payment\Common\PayException;
 use Payment\Refund\AliRefund;
 use Payment\Refund\CmbRefund;
+use Payment\Refund\QpayRefund;
 use Payment\Refund\WxRefund;
 
 /**
@@ -45,6 +46,9 @@ class RefundContext
                     break;
                 case Config::CMB_REFUND:
                     $this->refund = new CmbRefund($config);
+                    break;
+                case Config::QPAY_REFUND:
+                    $this->refund = new QpayRefund($config);
                     break;
                 default:
                     throw new PayException('当前仅支持：ALI WEIXIN CMB');
