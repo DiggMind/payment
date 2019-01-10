@@ -13,6 +13,8 @@ use Payment\Common\Qpay\QpayBaseStrategy;
 class QpayCharge extends QpayBaseStrategy
 {
 
+    protected $reqUrl = 'https://qpay.qq.com/cgi-bin/pay/qpay_unified_order.cgi';
+
     public function getBuildDataClass()
     {
         return ChargeData::class;

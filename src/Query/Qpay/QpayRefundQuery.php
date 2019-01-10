@@ -17,7 +17,7 @@ use Payment\Common\Qpay\QpayBaseStrategy;
 class QpayRefundQuery extends QpayBaseStrategy
 {
 
-    protected $reqUrl = 'https://qpay.qq.com/cgi-bin/pay/qpay_order_query.cgi';
+    protected $reqUrl = 'https://qpay.qq.com/cgi-bin/pay/qpay_refund_query.cgi';
 
     public function getBuildDataClass()
     {
@@ -26,7 +26,7 @@ class QpayRefundQuery extends QpayBaseStrategy
 
     protected function retData(array $data)
     {
-
+        return $data;
     }
 
     protected function onRetDataSuccess()

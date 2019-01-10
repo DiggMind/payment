@@ -7,9 +7,12 @@ use Payment\Common\Qpay\QpayBaseStrategy;
 
 
 /**
- * @author: benny
+ * Class QpayChargeQuery
+ * @package Payment\Query\Qpay
+ *
+ * @author: Benny <benny_a8@live.com>
  * @createTime: 2019-01-08 18:45
- * @description: qpay 支付接口
+ * @description: qpay 统一下单查询接口
  */
 class QpayChargeQuery extends QpayBaseStrategy
 {
