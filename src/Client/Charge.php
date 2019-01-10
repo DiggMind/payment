@@ -32,6 +32,10 @@ class Charge
         Config::WX_CHANNEL_LITE,// 微信小程序支付
 
         Config::CMB_CHANNEL_APP,// 招行一网通
+
+        Config::QPAY_CHANNEL_APP,// Qpay
+        Config::QPAY_CHANNEL_QR,// Qpay
+        Config::QPAY_CHANNEL_WAP,// Qpay
         'applepay_upacp',// Apple Pay
     ];
 

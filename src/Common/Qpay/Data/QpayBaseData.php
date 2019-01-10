@@ -7,9 +7,12 @@ use Payment\Common\PayException;
 use Payment\Utils\ArrayUtil;
 
 /**
- * @author: benny
+ * Class QpayBaseData
+ * @package Payment\Common\Qpay\Data
+ *
+ * @author: Benny <benny_a8@live.com>
  * @createTime: 2019-01-08 18:45
- * @description: qpay 支付接口
+ * @description: qpay 基础数据
  */
 abstract class QpayBaseData extends BaseData
 {

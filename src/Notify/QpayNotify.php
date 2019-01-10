@@ -9,9 +9,12 @@ use Payment\Utils\ArrayUtil;
 use Payment\Utils\DataParser;
 
 /**
- * @author: benny
+ * Class QpayNotify
+ * @package Payment\Notify
+ *
+ * @author: Benny <benny_a8@live.com>
  * @createTime: 2019-01-08 18:45
- * @description: qpay 下单接口 异步回调通知
+ * @description: qpay 回调通知
  */
 class QpayNotify extends NotifyStrategy
 {

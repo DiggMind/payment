@@ -10,18 +10,24 @@ use Payment\Common\PayException;
 use Payment\Common\QpayConfig;
 
 /**
- * @author: benny
- * @createTime: 2019-01-08 18:45
- * @description: qpay 基本策略
+ * Class QpayBaseStrategy
+ * @package Payment\Common\Qpay
  *
- * @property ConfigInterface $config QPAY支付配置
- * @property BaseData $reqData 请求数据
+ * @author: Benny <benny_a8@live.com>
+ * @createTime: 2019-01-08 18:45
+ * @description: qpay 基础策略
  */
 abstract class QpayBaseStrategy implements BaseStrategy
 {
 
+    /**
+     * @var ConfigInterface QPAY支付配置
+     */
     protected $config;
 
+    /**
+     * @var BaseData 请求数据
+     */
     protected $reqData;
 
     /**
