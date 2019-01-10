@@ -24,6 +24,7 @@ class Refund
 
         Config::CMB_REFUND,// 招行一网通
 
+        Config::QPAY_REFUND,// QPAY
         'applepay_upacp',// Apple Pay
     ];
 

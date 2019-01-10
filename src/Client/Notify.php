@@ -24,6 +24,8 @@ class Notify
         Config::WX_CHARGE,// 微信
 
         Config::CMB_CHARGE,// 招行一网通
+
+        Config::QPAY_CHARGE,// QPAY
         'applepay_upacp',// Apple Pay
     ];
 
