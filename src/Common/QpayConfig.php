@@ -28,7 +28,7 @@ class QpayConfig extends ConfigInterface
     /**
      * @var string 应用ID
      */
-    public $appdi = '';
+    public $appId = '';
 
     /**
      * @var string 商户号
@@ -90,11 +90,18 @@ class QpayConfig extends ConfigInterface
             throw new PayException('app_id 不能为空，请前往QPAY进行设置');
         }
 
-        // 初始 应用ID
+        // 初始 商户ID
         if (key_exists('mch_id', $config) && !empty($config['mch_id'])) {
             $this->mchId = $config['mch_id'];
         } else {
             throw new PayException('mch_id 不能为空，请前往QPAY进行设置');
+        }
+
+        // 初始化 MD5KEY
+        if (key_exists('md5_key', $config) && !empty($config['md5_key'])) {
+            $this->md5Key = $config['md5_key'];
+        } else {
+            throw new PayException('md5_key 不能为空，请前往QPAY进行设置');
         }
 
     }
