@@ -21,14 +21,6 @@ class ChargeQueryData extends QpayBaseData
     {
         parent::checkDataParam();
 
-        if (empty($this->mch_id)) {
-            throw new PayException('mch_id 不能为空');
-        }
-
-        if (empty($this->nonce_str)) {
-            throw new PayException('nonce_str 不能为空');
-        }
-
         if (empty($this->transaction_id) && empty($this->out_trade_no)) {
             throw new PayException('transaction_id 或 out_trade_no 未填写');
         }
@@ -37,9 +29,10 @@ class ChargeQueryData extends QpayBaseData
     protected function getReqData()
     {
         $reqData = [
-            'appid' => $this->app_id,
-            'mch_id' => $this->mch_id,
-            'nonce_str' => $this->nonce_str,
+            'appid' => $this->appId,
+            'mch_id' => $this->mchId,
+            'nonce_str' => $this->nonceStr,
+
             'transaction_id' => $this->transaction_id,
             'out_trade_no' => $this->out_trade_no,
         ];

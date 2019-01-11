@@ -17,6 +17,12 @@ use Payment\Utils\ArrayUtil;
 abstract class QpayBaseData extends BaseData
 {
 
+    protected function checkDataParam()
+    {
+
+    }
+
+
     protected function makeSign($signStr)
     {
         return $signStr;

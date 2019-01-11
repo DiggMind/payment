@@ -25,10 +25,6 @@ class RefundData extends QpayBaseData
      */
     protected function checkDataParam()
     {
-        if (empty($this->mchId)) {
-            throw new PayException('mchId 不能为空');
-        }
-
         if (empty($this->nonceStr)) {
             throw new PayException('nonceStr 不能为空');
         }
@@ -43,7 +39,7 @@ class RefundData extends QpayBaseData
         $this->retData = [
             'appid' => $this->appid,
             'mch_id' => $this->mch_id,
-            'nonce_str' => $this->nonce_str,
+            'nonce_str' => $this->nonceStr,
             'transaction_id' => $this->transaction_id,
             'out_trade_no' => $this->out_trade_no,
             'out_refund_no' => $this->out_refund_no,

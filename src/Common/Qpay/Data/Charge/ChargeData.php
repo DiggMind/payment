@@ -24,23 +24,19 @@ class ChargeData extends QpayBaseData
     protected function checkDataParam()
     {
         parent::checkDataParam();
-
-        if (empty($this->mch_id)) {
-            throw new PayException('mch_id 不能为空');
-        }
     }
 
     protected function getReqData()
     {
         $reqData = [
-            'appid' => $this->appid,
-            'mch_id' => $this->mch_id,
-            'nonce_str' => $this->nonce_str,
+            'appid' => $this->appId,
+            'mch_id' => $this->mchId,
+            'nonce_str' => $this->nonceStr,
             'sign' => $this->sign,
             'body' => $this->body,
             'attach' => '',
             'out_trade_no' => $this->out_trade_no,
-            'fee_type' => $this->fee_type ?: QpayConfig::CHARGE_FEE_TYPE_CNY,
+            'fee_type' => $this->feeType ?: QpayConfig::CHARGE_FEE_TYPE_CNY,
             'total_fee' => $this->total_fee, // <- 单位分，整型
             'spbill_create_ip' => $this->spbill_create_ip,
             'time_start' => $this->time_start,
@@ -52,6 +48,8 @@ class ChargeData extends QpayBaseData
             'device_info' => $this->deviceInfo,
             'notify_url' => $this->notifyUrl,
         ];
+
+        dd($reqData);
 
         return $reqData;
     }

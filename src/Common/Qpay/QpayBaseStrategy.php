@@ -84,4 +84,54 @@ abstract class QpayBaseStrategy implements BaseStrategy
         return $reqData;
     }
 
+    protected function sendReq($baseUri, array $data, $method = 'GET')
+    {
+        $client = new Client([
+            'base_uri' => $baseUri,
+            'timeout' => '10.0'
+        ]);
+        $method = strtoupper($method);
+        $options = [];
+        if ($method === 'GET') {
+            $options = [
+                'query' => $data,
+                'http_errors' => false
+            ];
+        } elseif ($method === 'POST') {
+            $options = [
+                'form_params' => $data,
+                'http_errors' => false
+            ];
+        }
+        // 发起网络请求
+        $response = $client->request($method, '', $options);
+
+        if ($response->getStatusCode() != '200') {
+            throw new PayException('网络发生错误，请稍后再试curl返回码：' . $response->getReasonPhrase());
+        }
+
+        $body = $response->getBody()->getContents();
+        try {
+            $body = \GuzzleHttp\json_decode($body, true);
+        } catch (\InvalidArgumentException $e) {
+            throw new PayException('返回数据 json 解析失败');
+        }
+
+        return $body;
+
+        $responseKey = str_ireplace('.', '_', $this->config->method) . '_response';
+        if (!isset($body[$responseKey])) {
+            throw new PayException('支付宝系统故障或非法请求');
+        }
+
+        // 验证签名，检查支付宝返回的数据
+        $flag = $this->verifySign($body[$responseKey], $body['sign']);
+        if (!$flag) {
+            throw new PayException('支付宝返回数据被篡改。请检查网络是否安全！');
+        }
+
+        // 这里可能带来不兼容问题。原先会检查code ，不正确时会抛出异常，而不是直接返回
+        return $body[$responseKey];
+    }
+
 }
