@@ -8,6 +8,8 @@ use Payment\Query\Ali\AliRefundQuery;
 use Payment\Query\Ali\AliTransferQuery;
 use Payment\Query\Cmb\CmbChargeQuery;
 use Payment\Query\Cmb\CmbRefundQuery;
+use Payment\Query\Qpay\QpayChargeQuery;
+use Payment\Query\Qpay\QpayRefundQuery;
 use Payment\Query\Wx\WxChargeQuery;
 use Payment\Query\Wx\WxRefundQuery;
 use Payment\Query\Wx\WxTransferQuery;
@@ -68,6 +70,12 @@ class QueryContext
                     break;
                 case Config::CMB_REFUND:// 招商退款查询
                     $this->query = new CmbRefundQuery($config);
+                    break;
+                case Config::QPAY_CHARGE:// QPAY订单查询
+                    $this->query = new QpayChargeQuery($config);
+                    break;
+                case Config::QPAY_REFUND:// QPAY退款查询
+                    $this->query = new QpayRefundQuery($config);
                     break;
                 default:
                     throw new PayException('当前仅支持：ALI_CHARGE ALI_REFUND WX_CHARGE WX_REFUND WX_TRANSFER WX_RED CMB_CHARGE CMB_REFUND');

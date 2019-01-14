@@ -51,7 +51,7 @@ class RefundContext
                     $this->refund = new QpayRefund($config);
                     break;
                 default:
-                    throw new PayException('当前仅支持：ALI WEIXIN CMB');
+                    throw new PayException('当前仅支持：ALI WEIXIN CMB QPAY');
             }
         } catch (PayException $e) {
             throw $e;
