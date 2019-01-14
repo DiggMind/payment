@@ -49,8 +49,6 @@ class ChargeData extends QpayBaseData
             'notify_url' => $this->notifyUrl,
         ];
 
-        dd($reqData);
-
         return $reqData;
     }
 
