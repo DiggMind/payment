@@ -82,7 +82,7 @@ class WxNotify extends NotifyStrategy
     protected function verifySign(array $retData)
     {
         $retSign = $retData['sign'];
-        $values = ArrayUtil::removeKeys($retData, ['sign', 'sign_type']);
+        $values = ArrayUtil::removeKeys($retData, ['sign']);
 
         $values = ArrayUtil::paraFilter($values);
 
